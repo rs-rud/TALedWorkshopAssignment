@@ -1,5 +1,6 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
     display: flex;
@@ -12,7 +13,7 @@ body {
     background: white;
     padding: 20px 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
 }
@@ -26,6 +27,8 @@ h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 input[type="text"] {
@@ -33,6 +36,13 @@ input[type="text"] {
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
 }
 
 button {
@@ -58,12 +68,35 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     padding: 10px;
     border-bottom: 1px solid #eee;
 }
 
 li:last-child {
     border-bottom: none;
+}
+
+.priority {
+    padding: 3px 7px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.priority-low {
+    color: #176b38;
+    background-color: #d9f2e3;
+}
+
+.priority-medium {
+    color: #856404;
+    background-color: #fff3cd;
+}
+
+.priority-high {
+    color: #842029;
+    background-color: #f8d7da;
 }
 
 .delete-btn {
