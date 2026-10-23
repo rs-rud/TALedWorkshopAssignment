@@ -1,3 +1,6 @@
+const DEFAULT_PRIORITY = 'Medium';
+const PRIORITIES = ['Low', 'Medium', 'High'];
+
 document.addEventListener('DOMContentLoaded', fetchTasks);
 
 async function fetchTasks() {
@@ -8,27 +11,43 @@ async function fetchTasks() {
 
     tasks.forEach(task => {
         const li = document.createElement('li');
-        li.innerHTML = `
-            <span>${task.title}</span>
-            <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
-        `;
+        const taskContent = document.createElement('span');
+        const priority = PRIORITIES.includes(task.priority)
+            ? task.priority
+            : DEFAULT_PRIORITY;
+        const priorityLabel = document.createElement('span');
+        const deleteButton = document.createElement('button');
+
+        taskContent.textContent = task.title;
+        priorityLabel.textContent = priority;
+        priorityLabel.className = `priority priority-${priority.toLowerCase()}`;
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'delete-btn';
+        deleteButton.addEventListener('click', () => deleteTask(task.id));
+
+        li.appendChild(taskContent);
+        li.appendChild(priorityLabel);
+        li.appendChild(deleteButton);
         taskList.appendChild(li);
     });
 }
 
 async function addTask() {
     const titleInput = document.getElementById('task-title');
+    const priorityInput = document.getElementById('task-priority');
     const title = titleInput.value.trim();
+    const priority = priorityInput.value || DEFAULT_PRIORITY;
 
     if (!title) return;
 
     await fetch('/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title })
+        body: JSON.stringify({ title, priority })
     });
 
     titleInput.value = '';
+    priorityInput.value = DEFAULT_PRIORITY;
     fetchTasks();
 }
 
