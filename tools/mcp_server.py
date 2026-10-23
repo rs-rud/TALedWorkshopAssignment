@@ -152,7 +152,7 @@ def publish_pull_request(issue_number: int, summary: str) -> str:
             "title": f"Automated Feature Implementation (Issue #{issue_number})",
             "body": f"Resolves #{issue_number}.\n\n### Summary of Changes:\n{summary}",
             "head": branch_name,
-            "base": "main",
+            "base": "master",
             "draft": True
         }).encode("utf-8")
 
